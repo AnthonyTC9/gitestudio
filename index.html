@@ -4,10 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mi Primer Proyecto Serio</title>
+
+   
+    <script type="text/javascript">
+    
+        async function traerPais()
+        {
+            const respuesta = await fetch("https://api.nationalize.io/?name=tapia");
+            
+            if(!respuesta.ok)
+            {
+                let oops = "404 no encontre nada";
+                alert(oops);
+                throw new Error(oops);
+            }
+            const nombre = respuesta.json();
+
+            return nombre;
+        }
+
+        function mostrarNombre(n)
+        {
+            document.getElementById("mensaje").innerHTML = n.country[0].country_id;
+        }
+
+
+        traerPais().then(mostrarNombre);
+    </script> 
 </head>
 <body>
-    <h1>Hola desde html</h1>
-    <P>Lorem ipsum dolor sit amet, 11111111111111111111111111111</P>
+    <h1>Titulo de mi proyecto serio</h1>
+    <P>Este es un proyecto muy Serio</P>
+    <P id="mensaje">Cargando...</P>
+    <script type="text/javascript"> 
+        mostrarNombre("Pancracio");
+    </script> 
+
 </body>
 </html>
